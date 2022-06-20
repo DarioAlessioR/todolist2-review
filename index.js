@@ -23,9 +23,6 @@ const showtodolist = (todolist) => {
     leftside.setAttribute('id', 'leftside');
     // Create the todo in activity
     const activity = document.createElement('p');
-    activity.setAttribute('name', 'activity');
-    activity.setAttribute('class', `${todolist[i].id}`);
-    activity.setAttribute('class', 'activity');
     activity.innerHTML = `${todolist[i].todo}`;
     // Make activity field editable and save new content to array and localStorage
     activity.setAttribute('contentEditable', 'true');
@@ -37,7 +34,6 @@ const showtodolist = (todolist) => {
     // Create checkbox
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
-    checkbox.setAttribute('name', 'checkbox');
     checkbox.addEventListener('click', () => {
       changeStatus(i);
       const todolist = JSON.parse(localStorage.getItem('texttodolist'));
@@ -59,9 +55,8 @@ const showtodolist = (todolist) => {
       // Give the trash can icon the order to delete the i element on click. After deletenig,
       //   will save new array and show new list of activities on screen
       icon3.addEventListener('click', () => {
-        const deletetodo = `${i}`;
         const todolist = JSON.parse(localStorage.getItem('texttodolist'));
-        todolist.splice(deletetodo, 1);
+        todolist.splice(i, 1);
         for (let i = 0; i < todolist.length; i += 1) {
           todolist[i].id = i;
         }
